@@ -5,6 +5,7 @@ import java.io.IOException;
 import Utente.Utente;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
@@ -25,21 +26,27 @@ public class LoginFilter extends HttpServlet implements Filter{
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
-        String loginURI = request.getContextPath() + "/Login";
         
-        boolean loggedIn = false;
         
         if( session.getAttribute("user") != null )
-        {
+        { 
         	Utente user = (Utente)session.getAttribute("user");
-            loggedIn =  user.getRole().equals("admin");
-        }
 
-        if (loggedIn) {
-            chain.doFilter(request, response);
-        } else {
-            response.sendRedirect(loginURI);
+        	 if ( user.getRole().equals("admin") ) { // se sei loggato come admin 
+                 chain.doFilter(request, response);
+             } else {
+             	request.setAttribute("role","ADMIN"); // se sei loggato come user
+             	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/access-denied.jsp");
+         		dispatcher.forward(request, response);
+             }
+        	
+        }else { //  se non sei loggato
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
+     		dispatcher.forward(request, response);
         }
+        
+
+       
     }
 
 }

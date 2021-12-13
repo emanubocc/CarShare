@@ -887,7 +887,7 @@ upcoming meetings
 ---------------------------------------------
 */
 
-section.upcoming-meetings {
+section.upcoming-meetings, section.main-content {
   background-image: url(../images/bg-page-1.jpg);
   background-position: center center;
   background-attachment: fixed;
@@ -897,18 +897,18 @@ section.upcoming-meetings {
   padding-bottom:0px;
 }
 
-section.upcoming-meetings .section-heading {
+section.upcoming-meetings .section-heading, section.main-content section.upcoming-meetings {
   text-align: center;
 }
 
-section.upcoming-meetings .categories {
+section.upcoming-meetings .categories, section.main-content .categories {
   background-color: #fff;
   border-radius: 20px;
   padding: 40px;
   margin-right: 45px;
 }
 
-section.upcoming-meetings .categories h4 {
+section.upcoming-meetings .categories h4, section.main-content .categories h4 {
   font-size: 18px;
   font-weight: 600;
   color: #1f272b;
@@ -917,29 +917,29 @@ section.upcoming-meetings .categories h4 {
   border-bottom: 1px solid #eee;
 }
 
-section.upcoming-meetings .categories ul li {
+section.upcoming-meetings .categories ul li, section.main-content .categories ul li {
   display: inline-block;
   margin-bottom: 15px;
 }
 
-section.upcoming-meetings .categories ul li a {
+section.upcoming-meetings .categories ul li a, section.main-content .categories ul li a {
   font-size: 15px;
   color: #1f272b;
   font-weight: 500;
   transition: all .3s;
 }
 
-section.upcoming-meetings .categories ul li a:hover {
+section.upcoming-meetings .categories ul li a:hover, section.main-content .categories ul li a:hover {
   color: #a12c2f;
 }
 
-section.upcoming-meetings .categories .main-button-red {
+section.upcoming-meetings .categories .main-button-red , section.main-content .categories .main-button-red{
   border-top: 1px solid #eee;
   padding-top: 30px;
   margin-top: 15px;
 }
 
-section.upcoming-meetings .categories .main-button-red a {
+section.upcoming-meetings .categories .main-button-red a ,section.main-content .categories .main-button-red a {
   width: 100%;
   text-align: center;
 }
@@ -1787,11 +1787,11 @@ responsive
     margin-top: 60px;
   }
 
-  section.upcoming-meetings {
+  section.upcoming-meetings, section.main-content {
     padding-top: 400px;
   }
 
-  section.upcoming-meetings .categories {
+  section.upcoming-meetings .categories,  section.main-content .categories {
     margin-right: 0px;
     margin-bottom: 30px;
   }

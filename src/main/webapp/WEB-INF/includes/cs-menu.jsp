@@ -15,10 +15,10 @@
                       <!-- ***** Menu Start ***** -->
                       <ul class="nav">
                           <li><a href="<%=request.getContextPath()%>" class="active">Home</a></li>
+                          <li><a href="<%=request.getContextPath()%>/Login">Login</a></li>
                          <li class="has-sub">
                           	<a href="#">User</a>
                           	   <ul class="sub-menu">
-                          	      <li><a href="<%=request.getContextPath()%>/Login">Login</a></li>
                           	   	  <li><a href="<%=request.getContextPath()%>/Registrazione">Registrazione</a></li>
                                   <li><a href="<%=request.getContextPath()%>/Prenota">Prenota</a></li>
                               </ul>
@@ -27,9 +27,8 @@
                           <li class="has-sub">
                           	<a href="#">Admin</a>
                           	   <ul class="sub-menu">
-                          	      <li><a href="<%=request.getContextPath()%>/Login">Login</a></li>
-                          	   	  <li><a href="<%=request.getContextPath()%>/Admin/Home">Admin</a></li>
-                                  <li><a href="<%=request.getContextPath()%>/Admin/Home?action=vediUtenti">Utenti</a></li>
+                          	   	  <li><a href="<%=request.getContextPath()%>/Admin/Home">Pannello Admin</a></li>
+                                  <li><a href="<%=request.getContextPath()%>/Admin/Home?action=vediUtenti">Lista Utenti</a></li>
                               </ul>
                           </li>
                           
