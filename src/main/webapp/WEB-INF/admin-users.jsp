@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 
-<c:set var="pageTitle" scope="request" value="Login Admin" />
+<c:set var="pageTitle" scope="request" value="Admin Users" />
 
 <!-- HEAD -->
 <jsp:include page="includes/cs-head.jsp"></jsp:include>
@@ -54,7 +54,9 @@
 														<c:out value="${user.nome}" />
 														<c:out value="${user.cognome}" />
 													</h5> <span class="text-muted font-13"><c:out
-															value="${user.email}" /></span>
+															value="${user.email}" /></span><br>
+															<span class="text-muted font-13"><c:out
+															value="${user.tel}" /></span>
 												</td>
 												<td><span class="badge badge-success-lighten ">
 														Confermato </span></td>

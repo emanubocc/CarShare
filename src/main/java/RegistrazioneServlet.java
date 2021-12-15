@@ -36,13 +36,14 @@ public class RegistrazioneServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String nome, cognome, email, password  = "";
+		String nome, cognome, email, password, tel  = "";
 		nome = request.getParameter("nome");
 		cognome = request.getParameter("cognome");
 		email = request.getParameter("email");
+		tel = request.getParameter("tel");
 		password = request.getParameter("password");
 		
-		Utente user = new Utente( 0, nome,cognome, email, password, "user");
+		Utente user = new Utente( 0, nome,cognome, email, tel, password, "user");
 		
 		UtenteDaoImp newUser = new UtenteDaoImp();
 		String result = newUser.insert(user);

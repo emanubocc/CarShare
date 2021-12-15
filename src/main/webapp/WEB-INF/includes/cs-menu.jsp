@@ -14,16 +14,24 @@
                       <!-- ***** Logo End ***** -->
                       <!-- ***** Menu Start ***** -->
                       <ul class="nav">
+                      
                           <li><a href="<%=request.getContextPath()%>" class="active">Home</a></li>
+                          <c:if test="${user == null}">
                           <li><a href="<%=request.getContextPath()%>/Login">Login</a></li>
-                         <li class="has-sub">
+                          <li><a href="<%=request.getContextPath()%>/Registrazione">Registrazione</a></li>
+                          </c:if>
+							
+						  <c:if test="${user.role == 'user'}">	
+                          <li class="has-sub">
                           	<a href="#">User</a>
                           	   <ul class="sub-menu">
-                          	   	  <li><a href="<%=request.getContextPath()%>/Registrazione">Registrazione</a></li>
-                                  <li><a href="<%=request.getContextPath()%>/Prenota">Prenota</a></li>
+                          	   	  <li><a href="<%=request.getContextPath()%>/UserProfile">Profilo</a></li>
+                                  <li><a href="<%=request.getContextPath()%>/UserProfile?action=Prenota">Prenota</a></li>
                               </ul>
                           </li>
-                         
+                          </c:if>
+                          
+                         <c:if test="${user.role == 'admin'}">
                           <li class="has-sub">
                           	<a href="#">Admin</a>
                           	   <ul class="sub-menu">
@@ -31,6 +39,7 @@
                                   <li><a href="<%=request.getContextPath()%>/Admin/Home?action=vediUtenti">Lista Utenti</a></li>
                               </ul>
                           </li>
+                          </c:if>
                           
                           <c:if test="${user != null}">
                           <li class="has-sub account" ><a href="#" class="email">${user.email}&nbsp;</a>

@@ -23,6 +23,26 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-4 align-self-center">
 					<div class="row">
+					
+				<c:if test="${resultLogin != null}">
+             	 <c:choose>
+			  		<c:when test="${resultLogin == 'Success'}">
+						<div class="alert alert-success mt-2" role="alert">
+							<p>Login avvenuto con successo!</p>
+						</div>	
+					</c:when>
+					<c:when test="${resultLogin == 'Logout'}">
+						<div class="alert alert-success mt-2" role="alert">
+							<p>Logout avvenuto con successo!</p>
+						</div>	
+					</c:when>
+					<c:otherwise>
+						<div class="alert alert-danger mt-2" role="alert">
+							<p>Errore: ${resultLogin}</p> 
+						</div>	
+    				</c:otherwise>
+    			</c:choose>
+    		 </c:if>
 						<div class="col-lg-12">
 						
 							<form id="simple-form" action="Login" method="post" >
@@ -64,25 +84,7 @@
 					
 					</div>
 					
-				<c:if test="${resultLogin != null}">
-             	 <c:choose>
-			  		<c:when test="${resultLogin == 'Success'}">
-						<div class="alert alert-success mt-2" role="alert">
-							<p>Login avvenuto con successo!</p>
-						</div>	
-					</c:when>
-					<c:when test="${resultLogin == 'Logout'}">
-						<div class="alert alert-success mt-2" role="alert">
-							<p>Logout avvenuto con successo!</p>
-						</div>	
-					</c:when>
-					<c:otherwise>
-						<div class="alert alert-danger mt-2" role="alert">
-							<p>Errore: ${resultLogin}</p> 
-						</div>	
-    				</c:otherwise>
-    			</c:choose>
-    		 </c:if>
+				
 				</div>
 			</div>
 		</div>

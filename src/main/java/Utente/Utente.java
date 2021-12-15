@@ -8,12 +8,13 @@ public class Utente {
 		super();
 	}
 	
-	public Utente(int id, String nome, String cognome, String email, String password, String role) {
+	public Utente(int id, String nome, String cognome, String email,String tel, String password, String role) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;
+		this.tel = tel;
 		this.password = password;
 		this.role = role;
 	}
@@ -66,11 +67,20 @@ public class Utente {
 		this.role = role;
 	}
 
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
 	private String nome;
 	private String cognome;
 	private String email;
 	private String password;
 	private int id;
 	private String role;
+	private String tel;
 		
 }

@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @WebFilter("/Admin/*")
-public class LoginFilter extends HttpServlet implements Filter{
+public class AdminFilter extends HttpServlet implements Filter{
 	private static final long serialVersionUID = 1L;
 
 
@@ -41,8 +41,8 @@ public class LoginFilter extends HttpServlet implements Filter{
              }
         	
         }else { //  se non sei loggato
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
-     		dispatcher.forward(request, response);
+            response.sendRedirect( request.getContextPath() + "/Login" );
+
         }
         
 

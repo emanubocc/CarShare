@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
  
  
-  <section class="form-area" id="simple-form">
+  <section class="footer-section" >
     <div class="footer">
       <p> ©COPYRIGHT 2022 Università degli studi di Napoli Parthenope 
           <br>
@@ -18,6 +18,5 @@
     <script src="<%=request.getContextPath()%>/resources/assets/js/owl-carousel.js"></script>
     <script src="<%=request.getContextPath()%>/resources/assets/js/lightbox.js"></script>
     <script src="<%=request.getContextPath()%>/resources/assets/js/tabs.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/assets/js/video.js"></script>
     <script src="<%=request.getContextPath()%>/resources/assets/js/custom.js"></script>
     

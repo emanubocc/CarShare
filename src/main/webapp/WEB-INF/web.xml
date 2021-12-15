@@ -61,12 +61,22 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>LoginFilter</display-name>
-    <servlet-name>LoginFilter</servlet-name>
-    <servlet-class>LoginFilter</servlet-class>
+    <display-name>AdminFilter</display-name>
+    <servlet-name>AdminFilter</servlet-name>
+    <servlet-class>AdminFilter</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>LoginFilter</servlet-name>
-    <url-pattern>/LoginFilter</url-pattern>
+    <servlet-name>AdminFilter</servlet-name>
+    <url-pattern>/AdminFilter</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserServlet</display-name>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/UserProfile</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -190,7 +190,7 @@ body {
 .section-heading h2 {
   line-height: 40px;
   margin-top: 0px;
-  margin-bottom: 50px; 
+  margin-bottom: 30px; 
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(250,250,250,0.15);
   font-size: 22px;
@@ -714,7 +714,7 @@ banner
 
 .main-banner .caption {
   position: absolute;
-  top: 55%;
+  top: 75%;
   transform: translateY(-50%);
 }
 
@@ -1325,12 +1325,15 @@ contact us
 --------------------------------------------- 
 */
 
-section.form-area, section.admin-area {
+
+
+body{  
   background-image: url(../images/bg-page-1.jpg);
   background-position: center center;
   background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-repeat: no-repeat;}
+  
+section{
   padding: 140px 0px 0px 0px;
 }
 
@@ -1836,7 +1839,7 @@ responsive
 }
 
 
-#top{ padding:300px 0px; background: #575D60 url(../images/bg-page-1.jpg) no-repeat; }
+#top{ padding:300px 0px 180px;}
 .float-end{float:right!important}
 .dropdown,.dropend,.dropstart,.dropup{position:relative}
 .card .header-title{margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.02em;font-size:.9rem;margin-top:0}

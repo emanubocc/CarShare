@@ -15,15 +15,16 @@ public class UtenteDaoImp implements UtenteDao{
 	{
 		String result = "Success";
 		Connection con = DaoFactory.getDatabase().openConnection();
-		String INSERT_USER = "INSERT INTO carshare.utente (nome,cognome,email,password,role) VALUES (?,?,?,?,?)";
+		String INSERT_USER = "INSERT INTO carshare.utente (nome,cognome,email,tel,password,role) VALUES (?,?,?,?,?,?)";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(INSERT_USER);
 			ps.setString(1, user.getNome());
 			ps.setString(2, user.getCognome());
 			ps.setString(3, user.getEmail());
-			ps.setString(4, user.getPassword());
-			ps.setString(5, user.getRole());
+			ps.setString(4, user.getTel());
+			ps.setString(5, user.getPassword());
+			ps.setString(6, user.getRole());
 			ps.executeUpdate();
 			con.close();
 			
@@ -63,7 +64,7 @@ public class UtenteDaoImp implements UtenteDao{
 		List<Utente> users = new ArrayList<>();
 		
 		Connection con = DaoFactory.getDatabase().openConnection();
-		String SELECT_ALL_USERS = "SELECT id_utente, nome,cognome,email FROM carshare.utente WHERE utente.role = 'user'";
+		String SELECT_ALL_USERS = "SELECT id_utente,nome,cognome,email,tel FROM carshare.utente WHERE utente.role = 'user'";
 	
 		try {
 			PreparedStatement ps = con.prepareStatement(SELECT_ALL_USERS);
@@ -75,7 +76,8 @@ public class UtenteDaoImp implements UtenteDao{
 				String nome = rs.getString("nome");
 				String cognome = rs.getString("cognome");
 				String email = rs.getString("email");
-				users.add(new Utente(id, nome, cognome, email, null, "user"));
+				String tel = rs.getString("tel");
+				users.add(new Utente(id, nome, cognome, email, tel, null, "user"));
 			}
 			
 			con.close();
@@ -107,9 +109,11 @@ public class UtenteDaoImp implements UtenteDao{
 				int id = rs.getInt("id_utente");
 				String nome = rs.getString("nome");
 				String cognome = rs.getString("cognome");
+				String tel = rs.getString("tel");
 				String role = rs.getString("role");
+				
 			
-				Utente user = new Utente( id, nome, cognome, email , null, role);
+				Utente user = new Utente( id, nome, cognome, email , tel, null, role);
 				con.close();
 				return user;
 			}

@@ -51,6 +51,12 @@
                   
                   <div class="col-lg-6">
                     <fieldset>
+                    <input name="tel" type="tel" id="tel" placeholder="TELEFONO..." required="">
+                  </fieldset>
+                  </div>
+                  
+                  <div class="col-lg-12">
+                    <fieldset>
                     <input name="password" type="password" id="password" placeholder="PASSWORD..." required="">
                   </fieldset>
                   </div>
@@ -62,16 +68,16 @@
                   </div>
                 </div>
               </form>
-              <c:if test="${result != null}">
+              <c:if test="${resultLogin != null}">
              	 <c:choose>
-			  		<c:when test="${result == 'Success'}">
+			  		<c:when test="${resultLogin == 'Success'}">
 						<div class="alert alert-success mt-2" role="alert">
 							<p>Inserimento avvenuto con successo!</p>
 						</div>	
 					</c:when>
 					<c:otherwise>
 						<div class="alert alert-danger mt-2" role="alert">
-							<p>Errore: ${result}</p> 
+							<p>Errore: ${resultLogin}</p> 
 						</div>	
     				</c:otherwise>
     			</c:choose>
