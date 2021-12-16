@@ -1,4 +1,4 @@
-package Automobile;
+package automobile;
 
 import java.util.List;
 

@@ -2,6 +2,9 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="parcheggio.ParcheggioDaoImp" %>
+<%@ page import="parcheggio.Parcheggio" %>
+
 
 
 <!DOCTYPE html>
@@ -48,7 +51,7 @@
     		  </div>
     		</c:if>
     		 
-				<div class="col-xl-6 col-lg-12">
+				<div class="col-xl-3 col-lg-12">
 						<div class="card">
 							<div class="card-header">I tuoi dati</div>
 							<div class="card-body">
@@ -59,7 +62,7 @@
 											<p>
 												<b>Nome:</b> ${user.nome} <br> <b>Cognome:</b>
 												${user.cognome}<br> <b>Email:</b> ${user.email}<br>
-												<b>Telefono:</b> ${user.tel}
+												<b>Telefono:</b> ${user.tel} 
 											</p>
 										</div>
 									</div>
@@ -69,24 +72,52 @@
 					<hr>
 				</div>
 
-				<div class="col-xl-6 col-lg-12">
+				<div class="col-xl-9 col-lg-12">
+				
 						<div class="card">
-							<div class="card-header">I tuoi dati</div>
-							<div class="card-body">
-								<div class="d-flex align-items-center justify-content-between">
-									<div class="col-md-12 d-flex align-items-center me-3">
+									<div class="card-header">Le tue prenotazioni</div>
+						<div class="card-body">
+						
+				<div class="table-responsive">
+								<table
+									class="table table-striped table-sm table-nowrap table-centered mb-0">
+									<thead>
+										<tr>
+											<th>Id</th>
+											<th>Data Inizio</th>
+											<th>Data Consegna</th>
+											<th>Percorrenza effettiva</th>
+											<th>Luogo Parcheggio</th>
+											<th>Tariffa</th>
+										</tr>
+									</thead>
+									<tbody>
+										
 
-										<div class="col-md-12 text-right">
-											<p>
-												<b>Nome:</b> ${user.nome} <br> <b>Cognome:</b>
-												${user.cognome}<br> <b>Email:</b> ${user.email}<br>
-												<b>Telefono:</b> ${user.tel}
-											</p>
-										</div>
-									</div>
-								</div>
+										
+										<c:forEach var="res" items="${resList}">
+											<tr>
+												
+												<td>
+													<h5 class="font-15 mb-1 fw-normal">
+														 #${res.id_prenotazione} 
+													</h5> <span class="text-muted font-13"></span>
+												</td>
+												
+												<td>${res.data_inizio}</td>
+												<td>${res.data_consegna} </td>
+												<td>${res.percorrenza_effettiva} </td>
+												<td>${res.luogo}</td>
+												<td>${res.tariffa}&euro;</td>
+										
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
 							</div>
-						</div>
+							
+				</div>
+				</div>
 					
 
 				</div>

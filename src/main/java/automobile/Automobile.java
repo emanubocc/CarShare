@@ -1,4 +1,4 @@
-package Automobile;
+package automobile;
 
 public class Automobile {
 	public String getTarga() {

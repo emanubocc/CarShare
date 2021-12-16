@@ -1,4 +1,5 @@
 
+
 import java.io.IOException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -6,17 +7,15 @@ import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import parcheggio.Parcheggio;
+import parcheggio.ParcheggioDaoImp;
+import utente.Utente;
+import utente.UtenteDaoImp;
 
 import java.util.List;
 
-import Utente.Utente;
-import Utente.UtenteDaoImp;
-
-import Automobile.Automobile;
-import Automobile.AutomobileDaoImp;
-
-import Parcheggio.Parcheggio;
-import Parcheggio.ParcheggioDaoImp;
+import automobile.Automobile;
+import automobile.AutomobileDaoImp;
 
 
 

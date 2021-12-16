@@ -1,4 +1,4 @@
-package Parcheggio;
+package parcheggio;
 
 public class Parcheggio {
 

@@ -1,4 +1,4 @@
-package DaoFactory;
+package daofactory;
 
 import java.sql.Connection;
 

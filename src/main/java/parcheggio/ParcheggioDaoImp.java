@@ -1,4 +1,4 @@
-package Parcheggio;
+package parcheggio;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import DaoFactory.DaoFactory;
+import daofactory.DaoFactory;
 
 public class ParcheggioDaoImp implements ParcheggioDao {
 
@@ -89,6 +88,34 @@ public class ParcheggioDaoImp implements ParcheggioDao {
 		}
 
 		return parks;
+	}
+
+
+	@Override
+	public String getLuogo(int idPark) {
+		
+		String luogo = "";
+		
+		Connection con = DaoFactory.getDatabase().openConnection();
+		String SELECT_PARK = "SELECT luogo FROM carshare.parcheggio WHERE id_parcheggio = ? ";
+	
+		try {
+			PreparedStatement ps = con.prepareStatement(SELECT_PARK);
+			ps.setInt(1, idPark);
+			ResultSet rs = ps.executeQuery();
+			
+			while ( rs.next() ) {
+				 luogo = rs.getString("luogo");
+			}
+			
+			con.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return luogo;		
 	}
 	
 
