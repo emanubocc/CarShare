@@ -20,7 +20,7 @@ public class PrenotazioneDaoImp implements PrenotazioneDao{
 		String result = "Success";
 		Connection con = DaoFactory.getDatabase().openConnection();
 		String INSERT_RESERVATION= "INSERT INTO carshare.prenotazione (data_inizio, data_consegna, percorrenza_effettiva, id_utente, id_parcheggio) "
-				+ "VALUES (?,?,?,?,?)";
+				+ "VALUES (?,?,?,?,?,'Prenotato', ?, 'NO' )";
 		
 		try {
 				PreparedStatement ps = con.prepareStatement(INSERT_RESERVATION);
@@ -29,7 +29,10 @@ public class PrenotazioneDaoImp implements PrenotazioneDao{
 				ps.setFloat(3, reservation.getPercorrenza_effettiva());
 				ps.setInt(4, reservation.getId_utente());
 				ps.setInt(5, reservation.getId_parcheggio());
+				ps.setFloat(6,  calculatePrice( reservation.getPercorrenza_effettiva(),
+						reservation.getData_consegna(), reservation.getData_consegna() ) );
 				
+				 
 				ps.executeUpdate();
 				con.close();
 			} catch (SQLException e) {
@@ -66,10 +69,16 @@ public class PrenotazioneDaoImp implements PrenotazioneDao{
 				int id_utente = rs.getInt("id_utente");
 				int id_parcheggio = rs.getInt("id_parcheggio");
 				String luogo = ParkDao.getLuogo( id_parcheggio );
+				String stato = rs.getString("stato");
+				
+				//float tariffa = rs.getFloat("tariffa");
 				float tariffa = calculatePrice(percorrenza_effettiva, data_inizio, data_consegna);
+				
+				String pagato = rs.getString("pagato");
+				String autoConsegnata = rs.getString("auto_consegnata");
 			
 				resList.add(new Prenotazione( id_prenotazione,  data_inizio,  data_consegna,  percorrenza_effettiva,
-						 id_utente,  id_parcheggio, luogo, tariffa));
+						 id_utente,  id_parcheggio, luogo, tariffa, stato, pagato, autoConsegnata));
 			}
 			
 			con.close();
@@ -85,16 +94,28 @@ public class PrenotazioneDaoImp implements PrenotazioneDao{
 	@Override
 	public float calculatePrice(float percorrenza_effettiva, Date data_inizio, Date data_consegna ) {
 
-		float price =  data_consegna.getTime() - data_inizio.getTime();
-		price = (price / (1000 * 60 * 60 * 24));
+		float diffTime =  data_consegna.getTime() - data_inizio.getTime();
+		float diffDays = (diffTime / (1000 * 60 * 60 * 24));
 		int TARIFFA_GIORNALIERA = 50;
-		price = (float) ((price*TARIFFA_GIORNALIERA) + (percorrenza_effettiva*0.75 ));
-		return price;
+		
+		float totale = (float) ((diffDays*TARIFFA_GIORNALIERA) + (percorrenza_effettiva*0.75 ));
+		
+		return totale;
 	}
 
 	@Override
 	public String deleteReservation(int idReservation) {
 		return null;
 	}
+
+	@Override
+	public String checkStatoPrenotazione(Prenotazione res) {
+
+		String esci ="ciao";
+		return esci;
+				
+	}
+	
+
 
 }

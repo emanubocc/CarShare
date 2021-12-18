@@ -26,7 +26,7 @@
                           	<a href="#">User</a>
                           	   <ul class="sub-menu">
                           	   	  <li><a href="<%=request.getContextPath()%>/UserProfile">Profilo</a></li>
-                                  <li><a href="<%=request.getContextPath()%>/UserProfile?action=Prenota">Prenota</a></li>
+                                  <li><a href="<%=request.getContextPath()%>/UserProfile?action=prenota">Prenota</a></li>
                               </ul>
                           </li>
                           </c:if>

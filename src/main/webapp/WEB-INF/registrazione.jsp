@@ -57,13 +57,19 @@
                   
                   <div class="col-lg-12">
                     <fieldset>
-                    <input name="password" type="password" id="password" placeholder="PASSWORD..." required="">
+                       <span class="p-2" style="font-size:10px">Utilizza una password forte, almeno 8 caratteri una lettera maiuscola numeri e simboli:</span>
+                    <input class="m-0" name="password" type="password" id="password" placeholder="PASSWORD..." required="">
+						
+						<div class="p-2">
+							<progress id="strength" value="0" max="5"></progress>
+						</div>
+
                   </fieldset>
                   </div>
                   
                   <div class="col-lg-12">
                     <fieldset>
-                          <button type="submit" id="form-submit" class="button">REGISTRATI</button>
+                          <button type="submit" id="form-submit" class="button mt-2">REGISTRATI</button>
                     </fieldset>
                   </div>
                 </div>
@@ -93,6 +99,26 @@
 
 <!-- FOOTER -->
 <jsp:include page="includes/cs-footer.jsp"></jsp:include>
+
+<script>
+function passwordStrength(pw) {
+	  return /.{4,}/.test(pw) * (  /* at least 8 characters */
+	    /.{8,}/.test(pw)          /* bonus if longer */
+	    + /[a-z]/.test(pw)         /* a lower letter */
+	    + /[A-Z]/.test(pw)         /* a upper letter */
+	    + /\d/.test(pw)            /* a digit */
+	    + /[^A-Za-z0-9]/.test(pw)  /* a special character */
+	   )
+	}
+
+	let pwInput = document.getElementById("password")
+
+	 pwInput.addEventListener('keyup', function() { 
+	 document.getElementById("strength").value = 
+	 passwordStrength(pwInput.value)
+	})
+</script>
+
 <!-- FINE FOOTER --> 
 </body>
 

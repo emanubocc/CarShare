@@ -86,9 +86,10 @@
 											<th>Id</th>
 											<th>Data Inizio</th>
 											<th>Data Consegna</th>
-											<th>Percorrenza effettiva</th>
+											<th>Percorrenza</th>
 											<th>Luogo Parcheggio</th>
 											<th>Tariffa</th>
+											<th>Stato</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -109,6 +110,7 @@
 												<td>${res.percorrenza_effettiva} </td>
 												<td>${res.luogo}</td>
 												<td>${res.tariffa}&euro;</td>
+												<td>${res.stato}</td>
 										
 											</tr>
 										</c:forEach>

@@ -9,4 +9,5 @@ public interface ParcheggioDao {
     public String deletePark(int idPark);
     public List<Parcheggio> selectAllParks();
     public String getLuogo(int idPark);
+ 
 }

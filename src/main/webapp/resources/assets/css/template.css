@@ -1861,4 +1861,6 @@ responsive
     padding: 0 0 0 10px;
 }
 .header-area .main-nav .nav li.account ul.sub-menu li {padding: 0 0 0 10px;}
-
+hr.blank{color: white; margin: 0;}
+.white-bg{background-color:#fff!important}
+progress{width:100%}
