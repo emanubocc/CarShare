@@ -10,6 +10,5 @@ public interface PrenotazioneDao {
     public List<Prenotazione> selectAllReservation(int idUser);
     public float calculatePrice(float percorrenza_effettiva, Date data_inizio, Date data_consegna );
     public String deleteReservation(int idReservation);
-    public String checkStatoPrenotazione( Prenotazione reservation );
-    
+	void updateStatoPrenotazioni(int id_utente);
 }

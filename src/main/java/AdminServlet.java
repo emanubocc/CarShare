@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import parcheggio.Parcheggio;
 import parcheggio.ParcheggioDaoImp;
+import prenotazione.Prenotazione;
+import prenotazione.PrenotazioneDaoImp;
 import utente.Utente;
 import utente.UtenteDaoImp;
 
@@ -105,6 +107,14 @@ public class AdminServlet extends HttpServlet {
 		List<Utente> listUser = UserDao.selectAllUsers();
 		request.setAttribute("listUser", listUser);
 		
+		if ( request.getParameter("View") != null )
+		{
+			int idView = Integer.parseInt(request.getParameter("View"));
+			PrenotazioneDaoImp resDao = new PrenotazioneDaoImp();
+			List<Prenotazione> resList = resDao.selectAllReservation(idView);
+			request.setAttribute("resList", resList);
+		}
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/admin-users.jsp");
 		dispatcher.forward(request, response);
 		

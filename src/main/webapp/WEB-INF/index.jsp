@@ -21,17 +21,27 @@
 <section class="section main-banner" id="top" data-section="section1">
    <div class="header-text">
       <div class="container">
-         <div class="row">
-            <div class="col-lg-12">
-               <div class="caption p-2">
+         <div class="row mt-5 pt-5">
+         
+
+         
+            <div class="col-lg-6">
+               <div class="caption p-4">
                   <h6>Corso di Programmazione 3</h6>
-                  <h2>Progetto Esame - CAR SHARING</h2>
-                  <p>WebApp che sviluppa un applicazione dedicata al Car Sharing. Realizzata mediante l'uso di Servlet come controllo e Jsp che fanno da presentation layer.</p>
+                  <h2>Progetto Esame <br><span style="color:#f5a425; font-size:46px; line-height:48px; letter-spacing:2px">CAR SHARING</span></h2>
+                  <p>WebApp che sviluppa un applicazione dedicata al Car Sharing. Basato sui principi della programmazione SOLID.
+                  Sviluppata in linguaggio Java, utilizzando servlet e jsp.</p>
                   <div class="main-button-red">
                      <div class="scroll-to-section"><a href="<%=request.getContextPath()%>/Registrazione">Registrati ora</a></div>
                   </div>
                </div>
             </div>
+         
+            <div class="col-lg-6 animated">
+         		 <img src="<%=request.getContextPath()%>/resources/assets/images/hero-img.png" class="img-fluid float-end " style="width:450px;
+    background: white; border-radius: 50%; margin-top:-30px; ">
+     	   </div>
+     		  
          </div>
       </div>
    </div>

@@ -682,12 +682,6 @@ banner
 --------------------------------------------- 
 */
 
-.main-banner {
-  position: relative;
-  max-height: 100%;
-  overflow: hidden;
-  margin-bottom: -40px;
-}
 
 #bg-video {
     min-width: 100%;
@@ -712,11 +706,7 @@ banner
     width: 100%;
 }
 
-.main-banner .caption {
-  position: absolute;
-  top: 75%;
-  transform: translateY(-50%);
-}
+
 
 .main-banner .caption h6 {
   margin-top: 0px;
@@ -745,8 +735,8 @@ banner
 
 .main-banner .caption p {
   color: #fff;
-  font-size: 14px;
-  max-width: 570px;
+  font-size: 16px;
+
 }
 
 .main-banner .caption .main-button-red {
@@ -1839,14 +1829,14 @@ responsive
 }
 
 
-#top{ padding:300px 0px 180px;}
+
 .float-end{float:right!important}
 .dropdown,.dropend,.dropstart,.dropup{position:relative}
 .card .header-title{margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.02em;font-size:.9rem;margin-top:0}
-.badge-warning-lighten{color:#f9bc0d;background-color:rgba(249,188,13,.18)}
-.badge-success-lighten{color:#00b371;background-color:rgba(66,210,157,.18)}
-.badge-danger-lighten{color:#fa6767;background-color:rgba(250,103,103,.18)}
-.badge-soft-primary {color: #1c4f93;background-color: #d5e5fa; padding:0 5px;}
+.badge-warning-lighten, .Da.consegnare, .Da.pagare{color:#f9bc0d;background-color:rgba(249,188,13,.18)}
+.badge-success-lighten, .Completato{color:#00b371;background-color:rgba(66,210,157,.18)}
+.badge-danger-lighten, .Scaduto{color:#fa6767;background-color:rgba(250,103,103,.18)}
+.badge-soft-primary, .Prenotato {color: #1c4f93;background-color: #d5e5fa; }
 .table .action-icon {color: #919ca7;}
 .font-13{font-size:14px;}
 .avatar-img {width: 8rem;}
@@ -1864,3 +1854,10 @@ responsive
 hr.blank{color: white; margin: 0;}
 .white-bg{background-color:#fff!important}
 progress{width:100%}
+
+
+.animated {
+  -webkit-animation:glide 2s ease-in-out alternate infinite;
+}
+.fa{padding:10px; font-size:20px;}
+.fa:hover{color:#f5a425;}

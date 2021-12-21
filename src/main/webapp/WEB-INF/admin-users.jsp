@@ -35,20 +35,19 @@
 									class="table table-striped table-sm table-nowrap table-centered mb-0">
 									<thead>
 										<tr>
-											<th>Id</th>
-											<th>Utente</th>
-											<th>Abbonato</th>
-											<th>Riconsegna</th>
-											<th></th>
-											<th></th>
-											<th></th>
+											<th>Id Utente</th>
+											<th>Info</th>
+											<th>View</th>
+											<th>Edit</th>
+											<th>Delete</th>
+
 										</tr>
 									</thead>
 									<tbody>
 
 										<c:forEach var="user" items="${listUser}">
 											<tr>
-												<td>&nbsp;<c:out value="${user.id}" /></td>
+												<td>&nbsp;#<c:out value="${user.id}" /></td>
 												<td>
 													<h5 class="font-15 mb-1 fw-normal">
 														<c:out value="${user.nome}" />
@@ -58,17 +57,14 @@
 															<span class="text-muted font-13"><c:out
 															value="${user.tel}" /></span>
 												</td>
-												<td><span class="badge badge-success-lighten ">
-														Confermato </span></td>
-												<td><span class="badge badge-success-lighten ">
-														Confermato </span></td>
 												<td class="table-action"><a
-													href="vedi?id=<c:out value='${user.id}' />"
-													class="action-icon"> <i class="fa fa-eye"></i>&nbsp;
-												</a></td>
+													href="<%=request.getContextPath()%>/Admin/Home?action=vediUtenti&View=${user.id}"
+													class="action-icon"> <i class="fa fa-eye"></i>&nbsp;</a></td>
+													
 												<td><a href="edit?id=<c:out value='${user.id}' />"
 													class="action-icon"> <i class="fa fa-pencil"></i>&nbsp;
 												</a></td>
+												
 												<td><a href="delete?id=<c:out value='${user.id}' />"
 													class="action-icon"> <i class="fa fa-remove"></i>&nbsp;
 												</a></td>
@@ -80,7 +76,47 @@
 						</div>
 					</div>
 				</div>
+				
+				<c:if test="${resList != null}">
+				<div class="col-xl-6 col-lg-12">
+					<div class="card">
+						<div class="card-body">
 
+							<h4 class="header-title mb-3">INFORMAZIONI PRENOTAZIONI</h4>
+
+							<div class="table-responsive">
+								<table
+									class="table table-striped table-sm table-nowrap table-centered mb-0">
+									<thead>
+										<tr>
+											<th>Id Utente</th>
+											<th>Id Prenotazione</th>
+											<th>Pagato</th>
+											<th>Consegnato</th>
+											<th>Stato</th>
+
+										</tr>
+									</thead>
+									<tbody>
+
+										<c:forEach var="res" items="${resList}">
+											<tr>
+												<td>&nbsp;#<c:out value="${res.id_utente}" /></td>
+												<td>&nbsp;#<c:out value="${res.id_prenotazione}" /></td>
+												
+												<td>${res.pagato}</td>
+												<td>${res.autoConsegnata}</td>
+												<td><span class="badge ${res.stato}"> ${res.stato} </span></td>
+
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				</c:if>
 
 				
 
@@ -93,9 +129,6 @@
 
 	<!--  FINE CONTENT -->
 
-	<span class="badge badge-success-lighten float-end">Ok</span>
-	<span class="badge badge-danger-lighten float-end">Lost lead</span>
-	<span class="badge badge-warning-lighten float-end">Cold lead</span>
 
 
 	<!-- FOOTER -->

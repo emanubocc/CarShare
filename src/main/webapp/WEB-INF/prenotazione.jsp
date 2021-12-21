@@ -65,7 +65,7 @@
 					
 				  <hr class="blank">
                   <div class="col-lg-6">
-                     <span class="p-2">Totale stimato:  <input type="text" name="total" id="total" class="white-bg" disabled/></span>
+                     <span class="p-2">Totale stimato in euro :  <input type="text" name="total" id="total" class="white-bg" disabled/></span>
                   </div>
                    
                   <div class="col-lg-6">
@@ -75,16 +75,16 @@
                   </div>
                 </div>
               </form>
-              <c:if test="${resultLogin != null}">
+              <c:if test="${result != null}">
              	 <c:choose>
-			  		<c:when test="${resultLogin == 'Success'}">
+			  		<c:when test="${result == 'Success'}">
 						<div class="alert alert-success mt-2" role="alert">
-							<p>Inserimento avvenuto con successo!</p>
+							<p>Inserimento prenotazione avvenuto con successo!</p>
 						</div>	
 					</c:when>
 					<c:otherwise>
 						<div class="alert alert-danger mt-2" role="alert">
-							<p>Errore: ${resultLogin}</p> 
+							<p>Errore: ${result}</p> 
 						</div>	
     				</c:otherwise>
     			</c:choose>
