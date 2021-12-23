@@ -103,6 +103,7 @@ public class AdminServlet extends HttpServlet {
 
 	private void showUserList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 	 	UtenteDaoImp UserDao = new UtenteDaoImp();
 		List<Utente> listUser = UserDao.selectAllUsers();
 		request.setAttribute("listUser", listUser);
@@ -114,7 +115,7 @@ public class AdminServlet extends HttpServlet {
 			List<Prenotazione> resList = resDao.selectAllReservation(idView);
 			request.setAttribute("resList", resList);
 		}
-
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/admin-users.jsp");
 		dispatcher.forward(request, response);
 		
@@ -192,15 +193,17 @@ public class AdminServlet extends HttpServlet {
 				String result = newCar.moveCar(targa, parkId);
 				request.setAttribute("result", result);
 				moveCar(request,response);
-				
-				
 			}
-			
-		
+			else if("conferma".equals(selectForm)) {
+				
+					
+					int idPrenotazione = Integer.parseInt(request.getParameter("id_prenotazione"));
 
-		
+					PrenotazioneDaoImp resDao = new PrenotazioneDaoImp();
+					resDao.changeStato(idPrenotazione, "Erogato");
+					showUserList(request, response);
+			}
+				
 	}
-
-
-
+			
 }

@@ -25,7 +25,13 @@
             <div class="col-lg-12">
 
               <form id="simple-form" action="UserProfile" method="post">
-                <div class="row">
+
+				<div class="row">
+	              <div class=" d-none">
+					<fieldset>
+						<input name="hidden" type="text" id="hidden" value="consegna">
+					</fieldset>
+				  </div>
                 
                   <div class="col-lg-12">
                     <h2>Prenotazione</h2>

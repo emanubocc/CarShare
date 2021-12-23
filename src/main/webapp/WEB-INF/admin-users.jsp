@@ -24,7 +24,7 @@
 		<div class="container">
 			<div class="row">
 
-				<div class="col-xl-6 col-lg-12">
+				<div class="col-xl-5 col-lg-12">
 					<div class="card">
 						<div class="card-body">
 
@@ -35,7 +35,7 @@
 									class="table table-striped table-sm table-nowrap table-centered mb-0">
 									<thead>
 										<tr>
-											<th>Id Utente</th>
+											<th>User ID</th>
 											<th>Info</th>
 											<th>View</th>
 											<th>Edit</th>
@@ -61,11 +61,11 @@
 													href="<%=request.getContextPath()%>/Admin/Home?action=vediUtenti&View=${user.id}"
 													class="action-icon"> <i class="fa fa-eye"></i>&nbsp;</a></td>
 													
-												<td><a href="edit?id=<c:out value='${user.id}' />"
+												<td><a href=""
 													class="action-icon"> <i class="fa fa-pencil"></i>&nbsp;
 												</a></td>
 												
-												<td><a href="delete?id=<c:out value='${user.id}' />"
+												<td><a href=""
 													class="action-icon"> <i class="fa fa-remove"></i>&nbsp;
 												</a></td>
 											</tr>
@@ -78,7 +78,7 @@
 				</div>
 				
 				<c:if test="${resList != null}">
-				<div class="col-xl-6 col-lg-12">
+				<div class="col-xl-7 col-lg-12">
 					<div class="card">
 						<div class="card-body">
 
@@ -89,10 +89,10 @@
 									class="table table-striped table-sm table-nowrap table-centered mb-0">
 									<thead>
 										<tr>
-											<th>Id Utente</th>
-											<th>Id Prenotazione</th>
+											<th>ID Utente</th>
+											<th>ID Prenotazione</th>
 											<th>Pagato</th>
-											<th>Consegnato</th>
+											<th>Auto consegnata</th>
 											<th>Stato</th>
 
 										</tr>
@@ -104,10 +104,31 @@
 												<td>&nbsp;#<c:out value="${res.id_utente}" /></td>
 												<td>&nbsp;#<c:out value="${res.id_prenotazione}" /></td>
 												
-												<td>${res.pagato}</td>
-												<td>${res.autoConsegnata}</td>
+												<td><p class="nope">${res.pagato}</p></td>
+												<td><p class="nope">${res.autoConsegnata}</p></td>
 												<td><span class="badge ${res.stato}"> ${res.stato} </span></td>
-
+												<td>
+													<c:if test="${res.stato == 'Prenotato'}">
+													<form action="Home" method="post">
+														<div class=" d-none">
+															<fieldset>
+																<input name="hidden" type="text" id="hidden"
+																	value="conferma">
+															</fieldset>
+														</div>
+														<div class=" d-none">
+														<fieldset>
+															<input type="text" name="id_prenotazione"
+																id="id_prenotazione" value="${res.id_prenotazione}">
+														</fieldset>
+														</div>
+														<fieldset>
+															<button type="submit" id="form-submit"
+																class="btn btn-primary btn-small">Conferma</button>
+														</fieldset>
+													</form>
+													</c:if>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -116,6 +137,13 @@
 						</div>
 					</div>
 				</div>
+				</c:if>
+				<c:if test="${resList == null}">
+					<div class="col-xl-7 col-lg-12">
+					<div class="alert alert-warning mt-2" role="alert">
+						<p>Seleziona la vista di un utente per visualizzare le prenotazioni.</p>
+					</div>
+					</div>
 				</c:if>
 
 				

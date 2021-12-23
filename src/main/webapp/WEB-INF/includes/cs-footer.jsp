@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
  
- 
+ <footer>
   <section class="footer-section" >
     <div class="footer">
       <p> ©COPYRIGHT 2022 Università degli studi di Napoli Parthenope 
@@ -19,4 +19,4 @@
     <script src="<%=request.getContextPath()%>/resources/assets/js/lightbox.js"></script>
     <script src="<%=request.getContextPath()%>/resources/assets/js/tabs.js"></script>
     <script src="<%=request.getContextPath()%>/resources/assets/js/custom.js"></script>
-    
+ </footer>

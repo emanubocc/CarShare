@@ -1836,7 +1836,7 @@ responsive
 .badge-warning-lighten, .Da.consegnare, .Da.pagare{color:#f9bc0d;background-color:rgba(249,188,13,.18)}
 .badge-success-lighten, .Completato{color:#00b371;background-color:rgba(66,210,157,.18)}
 .badge-danger-lighten, .Scaduto{color:#fa6767;background-color:rgba(250,103,103,.18)}
-.badge-soft-primary, .Prenotato {color: #1c4f93;background-color: #d5e5fa; }
+.badge-soft-primary, .Prenotato, .Erogato {color: #1c4f93;background-color: #d5e5fa; }
 .table .action-icon {color: #919ca7;}
 .font-13{font-size:14px;}
 .avatar-img {width: 8rem;}
@@ -1861,3 +1861,8 @@ progress{width:100%}
 }
 .fa{padding:10px; font-size:20px;}
 .fa:hover{color:#f5a425;}
+tr{font-size:14px;}
+p.nope{ text-transform: lowercase !important; }
+p.nope::first-letter{ text-transform: capitalize !important; }
+.btn-small{font-size: 10px; padding: 1px 5px;}
+ 

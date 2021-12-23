@@ -110,7 +110,29 @@
 												<td>${res.percorrenza_effettiva} </td>
 												<td>${res.luogo}</td>
 												<td>${res.tariffa}&euro;</td>
-												<td>${res.stato}</td>
+												<td><span class="badge ${res.stato}">${res.stato}</span></td>
+												<td>
+													<c:if test="${res.stato == 'Erogato'}">
+													<form action="UserProfile" method="post">
+														<div class=" d-none">
+															<fieldset>
+																<input name="hidden" type="text" id="hidden"
+																	value="consegna">
+															</fieldset>
+														</div>
+														<div class=" d-none">
+														<fieldset>
+															<input type="text" name="id_prenotazione"
+																id="id_prenotazione" value="${res.id_prenotazione}">
+														</fieldset>
+														</div>
+														<fieldset>
+															<button type="submit" id="form-submit"
+																class="btn btn-primary btn-small">Consegna</button>
+														</fieldset>
+													</form>
+													</c:if>
+												</td>
 										
 											</tr>
 										</c:forEach>
