@@ -29,7 +29,7 @@
 				<div class="row">
 	              <div class=" d-none">
 					<fieldset>
-						<input name="hidden" type="text" id="hidden" value="consegna">
+						<input name="hidden" type="text" id="hidden" value="prenotazione">
 					</fieldset>
 				  </div>
                 
@@ -40,21 +40,21 @@
                   <div class="col-lg-12">
                     <fieldset>
                      <span class="p-2">Data inizio noleggio:</span>
-                      <input name="data_inizio" type="date" id="data_inizio" onblur="calcolaTotale()">
+                      <input name="data_inizio" type="date" id="data_inizio" required>
                     </fieldset>
                   </div>
                   <hr class="blank">
                   <div class="col-lg-12">
                     <fieldset>
                      <span class="p-2">Data consegna noleggio:</span>
-                       <input name="data_consegna" type="date" id="data_consegna" onblur="calcolaTotale()">
+                       <input name="data_consegna" type="date" id="data_consegna" required>
                     </fieldset>
                   </div>
                   <hr class="blank">
                   <div class="col-lg-6">
                     <fieldset>
-                     <span class="p-2">Percorrenza:</span>
-                    <input name="percorrenza" type="number" id="percorrenza" onblur="calcolaTotale()" >
+                     <span class="p-2">Percorrenza km:</span>
+                    <input name="percorrenza" type="number" id="percorrenza" onblur="calcolaTotale()" required >
                   </fieldset>
                   </div>
                   
@@ -113,6 +113,12 @@ function calcolaTotale(){
 	const date1 = new Date( document.getElementById('data_inizio').value );
 	const date2 = new Date( document.getElementById('data_consegna').value );
 	
+	if(date1 > date2)
+	{
+		alert("Data di consegna è antecedente alla data di inizio noleggio");
+		document.getElementById("data_consegna").valueAsDate = null;
+	}
+		
 	const diffTime = Math.abs(date2 - date1);
 	const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
     var percorrenza = document.getElementById('percorrenza').value;

@@ -14,8 +14,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import utente.Utente;
 
-@WebFilter("/Admin/*")
-public class AdminFilter extends HttpServlet implements Filter {
+@WebFilter("/UserProfile/*")
+public class UserFilter extends HttpServlet implements Filter {
 	private static final long serialVersionUID = 1L;
 
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
@@ -29,11 +29,13 @@ public class AdminFilter extends HttpServlet implements Filter {
 			Utente user = (Utente) session.getAttribute("user");
 
 			if (user.getRole().equals("admin")) { // se sei loggato come admin
-				chain.doFilter(request, response);
-			} else {
-				request.setAttribute("role", "ADMIN"); // se sei loggato come user
+				request.setAttribute("role", "USER");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/access-denied.jsp");
 				dispatcher.forward(request, response);
+
+			} else {
+				// se sei loggato come user
+				chain.doFilter(request, response);
 			}
 
 		} else { // se non sei loggato

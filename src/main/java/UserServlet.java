@@ -81,13 +81,22 @@ public class UserServlet extends HttpServlet {
 			
 			showProfile(request,response);
 		}
+		else if("paid".equals(selectForm)) 
+		{
+		
+			int idPrenotazione = Integer.parseInt(request.getParameter("id_prenotazione"));
+
+			PrenotazioneDaoImp resDao = new PrenotazioneDaoImp();
+			resDao.changePaid(idPrenotazione);
+			showProfile(request, response);
+		}
 		else if("consegna".equals(selectForm)) 
 		{
 		
 			int idPrenotazione = Integer.parseInt(request.getParameter("id_prenotazione"));
 
 			PrenotazioneDaoImp resDao = new PrenotazioneDaoImp();
-			resDao.changeStato(idPrenotazione, "Completato");
+			resDao.changeConsegna(idPrenotazione);
 			showProfile(request, response);
 		}
 		

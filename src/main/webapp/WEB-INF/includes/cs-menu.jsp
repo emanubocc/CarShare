@@ -37,6 +37,7 @@
                           	   <ul class="sub-menu">
                           	   	  <li><a href="<%=request.getContextPath()%>/Admin/Home">Pannello Admin</a></li>
                                   <li><a href="<%=request.getContextPath()%>/Admin/Home?action=vediUtenti">Lista Utenti</a></li>
+                                   <li><a href="<%=request.getContextPath()%>/Admin/Home?action=codaPrenotazioni">Coda Prenotazioni</a></li>
                               </ul>
                           </li>
                           </c:if>

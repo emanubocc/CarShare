@@ -79,4 +79,14 @@
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/UserProfile</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserFilter</display-name>
+    <servlet-name>UserFilter</servlet-name>
+    <servlet-class>UserFilter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserFilter</servlet-name>
+    <url-pattern>/UserFilter</url-pattern>
+  </servlet-mapping>
 </web-app>

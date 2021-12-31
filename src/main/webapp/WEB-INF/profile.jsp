@@ -2,8 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page import="parcheggio.ParcheggioDaoImp" %>
-<%@ page import="parcheggio.Parcheggio" %>
 
 
 
@@ -112,7 +110,8 @@
 												<td>${res.tariffa}&euro;</td>
 												<td><span class="badge ${res.stato}">${res.stato}</span></td>
 												<td>
-													<c:if test="${res.stato == 'Erogato'}">
+												<c:if test="${res.stato == 'Erogato' || res.stato == 'Da consegnare'}">
+													<c:if test="${res.autoConsegnata == 'NO'}">
 													<form action="UserProfile" method="post">
 														<div class=" d-none">
 															<fieldset>
@@ -132,6 +131,31 @@
 														</fieldset>
 													</form>
 													</c:if>
+												</c:if>
+												</td>
+												<td>
+												<c:if test="${res.stato == 'Erogato' || res.stato == 'Da pagare' }">
+													<c:if test="${res.pagato == 'NO'}">
+													<form action="UserProfile" method="post">
+														<div class=" d-none">
+															<fieldset>
+																<input name="hidden" type="text" id="hidden"
+																	value="paid">
+															</fieldset>
+														</div>
+														<div class=" d-none">
+														<fieldset>
+															<input type="text" name="id_prenotazione"
+																id="id_prenotazione" value="${res.id_prenotazione}">
+														</fieldset>
+														</div>
+														<fieldset>
+															<button type="submit" id="form-submit"
+																class="btn btn-primary btn-small">Paga</button>
+														</fieldset>
+													</form>
+													</c:if>
+												</c:if>
 												</td>
 										
 											</tr>

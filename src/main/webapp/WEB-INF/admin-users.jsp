@@ -24,7 +24,7 @@
 		<div class="container">
 			<div class="row">
 
-				<div class="col-xl-5 col-lg-12">
+				<div class="col-xl-4 col-lg-12">
 					<div class="card">
 						<div class="card-body">
 
@@ -35,12 +35,10 @@
 									class="table table-striped table-sm table-nowrap table-centered mb-0">
 									<thead>
 										<tr>
-											<th>User ID</th>
+											<th>Id &nbsp;</th>
 											<th>Info</th>
-											<th>View</th>
-											<th>Edit</th>
-											<th>Delete</th>
-
+											<th>Vista</th>
+											<th>Elimina</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -61,13 +59,11 @@
 													href="<%=request.getContextPath()%>/Admin/Home?action=vediUtenti&View=${user.id}"
 													class="action-icon"> <i class="fa fa-eye"></i>&nbsp;</a></td>
 													
-												<td><a href=""
-													class="action-icon"> <i class="fa fa-pencil"></i>&nbsp;
-												</a></td>
-												
-												<td><a href=""
+												<td><a href="<%=request.getContextPath()%>/Admin/Home?action=vediUtenti&delete=${user.id}"
 													class="action-icon"> <i class="fa fa-remove"></i>&nbsp;
 												</a></td>
+													
+												
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -78,7 +74,7 @@
 				</div>
 				
 				<c:if test="${resList != null}">
-				<div class="col-xl-7 col-lg-12">
+				<div class="col-xl-8 col-lg-12">
 					<div class="card">
 						<div class="card-body">
 
@@ -89,22 +85,25 @@
 									class="table table-striped table-sm table-nowrap table-centered mb-0">
 									<thead>
 										<tr>
-											<th>ID Utente</th>
+											
 											<th>ID Prenotazione</th>
 											<th>Pagato</th>
-											<th>Auto consegnata</th>
+											<th>Data Noleggio</th>
+											<th>Auto Riconsegnata</th>
 											<th>Stato</th>
-
+											<th>Conferma</th>
+											<th>Cancella</th>
+											
 										</tr>
 									</thead>
 									<tbody>
 
 										<c:forEach var="res" items="${resList}">
 											<tr>
-												<td>&nbsp;#<c:out value="${res.id_utente}" /></td>
 												<td>&nbsp;#<c:out value="${res.id_prenotazione}" /></td>
 												
 												<td><p class="nope">${res.pagato}</p></td>
+												<td><p class="nope">${res.data_inizio} / ${res.data_consegna}</p></td>
 												<td><p class="nope">${res.autoConsegnata}</p></td>
 												<td><span class="badge ${res.stato}"> ${res.stato} </span></td>
 												<td>
@@ -129,6 +128,10 @@
 													</form>
 													</c:if>
 												</td>
+												
+												<td><a href="<%=request.getContextPath()%>/Admin/Home?action=vediUtenti&deleteReservation=${res.id_prenotazione}"
+													class="action-icon"> <i class="fa fa-remove"></i>&nbsp;
+												</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -147,7 +150,6 @@
 				</c:if>
 
 				
-
 
 			</div>
 		</div>

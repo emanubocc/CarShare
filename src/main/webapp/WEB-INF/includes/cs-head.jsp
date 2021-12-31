@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
   <head>
+    <link href="<%=request.getContextPath()%>/resources/assets/images/favicon.png" rel="icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
