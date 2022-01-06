@@ -29,8 +29,9 @@
                <div class="caption p-4">
                   <h6>Corso di Programmazione 3</h6>
                   <h2>Progetto Esame <br><span style="color:#f5a425; font-size:46px; line-height:48px; letter-spacing:2px">CAR SHARING</span></h2>
-                  <p>WebApp che sviluppa un applicazione dedicata al Car Sharing. Basato sui principi della programmazione SOLID.
-                  Sviluppata in linguaggio Java, utilizzando servlet e jsp.</p>
+                  <p>WebApp che sviluppa un' applicazione dedicata al Car Sharing. Basato sui principi della programmazione SOLID.
+                  Sviluppata in linguaggio Java.
+                  Tecnologie utilizzate: Java Servlet, Jsp (Java Servlet Pages), Javascript, JQuery, Html e CSS.</p>
                   <div class="main-button-red">
                      <div class="scroll-to-section"><a href="<%=request.getContextPath()%>/Registrazione">Registrati ora</a></div>
                   </div>

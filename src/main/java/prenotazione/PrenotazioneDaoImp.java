@@ -10,6 +10,7 @@ import java.util.List;
 
 import daofactory.DaoFactory;
 import parcheggio.ParcheggioDaoImp;
+import automobile.AutomobileDaoImp;
 
 public class PrenotazioneDaoImp implements PrenotazioneDao {
 
@@ -17,12 +18,22 @@ public class PrenotazioneDaoImp implements PrenotazioneDao {
 	public String insert(Prenotazione reservation) {
 
 		String result = "Success";
+		AutomobileDaoImp CarDao = new AutomobileDaoImp();
+		String targa = CarDao.trovaAuto(reservation.getId_parcheggio());
+		if( targa.equals("no_cars") )
+		{
+			result = "Nessuna auto disponibile";
+			return result;
+		}
 		Connection con = DaoFactory.getDatabase().openConnection();
-		String INSERT_RESERVATION = "INSERT INTO carshare.prenotazioni (data_inizio, data_consegna, percorrenza_effettiva, id_utente, id_parcheggio, stato, tariffa, pagato, auto_consegnata) "
-				+ "VALUES (?,?,?,?,?,'Prenotato', ?, 'NO', 'NO')";
-
+		String INSERT_RESERVATION = "INSERT INTO carshare.prenotazioni (data_inizio, data_consegna, percorrenza_effettiva, id_utente, id_parcheggio, stato, tariffa, pagato, auto_consegnata, targa) "
+				+ "VALUES (?,?,?,?,?,'Prenotato', ?, 'NO', 'NO', ? )";
+		
+		
 		try {
+						
 			PreparedStatement ps = con.prepareStatement(INSERT_RESERVATION);
+			
 			ps.setDate(1, reservation.getData_inizio());
 			ps.setDate(2, reservation.getData_consegna());
 			ps.setFloat(3, reservation.getPercorrenza_effettiva());
@@ -30,6 +41,8 @@ public class PrenotazioneDaoImp implements PrenotazioneDao {
 			ps.setInt(5, reservation.getId_parcheggio());
 			ps.setFloat(6, calculatePrice(reservation.getPercorrenza_effettiva(), reservation.getData_inizio(),
 					reservation.getData_consegna()));
+			ps.setString(7, targa);
+			
 
 			ps.executeUpdate();
 			con.close();
@@ -42,13 +55,14 @@ public class PrenotazioneDaoImp implements PrenotazioneDao {
 		return result;
 	}
 
+
 	@Override
 	public List<Prenotazione> selectParkReservation(int idPark) {
 
 		ParcheggioDaoImp ParkDao = new ParcheggioDaoImp();
 		List<Prenotazione> resList = new ArrayList<>();
 		Connection con = DaoFactory.getDatabase().openConnection();
-		String SELECT_RESERVATION = "SELECT * FROM carshare.prenotazioni WHERE id_parcheggio = ?";
+		String SELECT_RESERVATION = "SELECT * FROM carshare.prenotazioni WHERE id_parcheggio = ? ORDER BY id_prenotazione ASC";
 
 		try {
 
@@ -69,9 +83,10 @@ public class PrenotazioneDaoImp implements PrenotazioneDao {
 				float tariffa = rs.getFloat("tariffa");
 				String pagato = rs.getString("pagato");
 				String autoConsegnata = rs.getString("auto_consegnata");
+				String targa = rs.getString("targa");
 
 				resList.add(new Prenotazione(id_prenotazione, data_inizio, data_consegna, percorrenza_effettiva,
-						id_utente, id_parcheggio, luogo, tariffa, stato, pagato, autoConsegnata));
+						id_utente, id_parcheggio, luogo, tariffa, stato, pagato, autoConsegnata, targa));
 			}
 
 			con.close();
@@ -112,9 +127,10 @@ public class PrenotazioneDaoImp implements PrenotazioneDao {
 				float tariffa = rs.getFloat("tariffa");
 				String pagato = rs.getString("pagato");
 				String autoConsegnata = rs.getString("auto_consegnata");
+				String targa = rs.getString("targa");
 
 				resList.add(new Prenotazione(id_prenotazione, data_inizio, data_consegna, percorrenza_effettiva,
-						id_utente, id_parcheggio, luogo, tariffa, stato, pagato, autoConsegnata));
+						id_utente, id_parcheggio, luogo, tariffa, stato, pagato, autoConsegnata, targa));
 			}
 
 			con.close();

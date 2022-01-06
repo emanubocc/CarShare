@@ -32,13 +32,28 @@ public class Automobile {
 		this.luogo = luogo;
 	}
 	
-	public Automobile(String targa, String modello, String imgUrl, int idPark, String luogo) {
+	public Automobile(String targa, String modello, String imgUrl, int idPark, String luogo
+			, String stato) {
 		super();
 		this.targa = targa;
 		this.modello = modello;
 		this.imgUrl = imgUrl;
 		this.idPark = idPark;
 		this.luogo = luogo;
+		this.stato = stato;
+	}
+
+	/**
+	 * @return the stato
+	 */
+	public String getStato() {
+		return stato;
+	}
+	/**
+	 * @param stato the stato to set
+	 */
+	public void setStato(String stato) {
+		this.stato = stato;
 	}
 
 	private String targa;
@@ -46,4 +61,5 @@ public class Automobile {
 	private String imgUrl;
 	private int idPark;
 	private String luogo;
+	private String stato;
 }

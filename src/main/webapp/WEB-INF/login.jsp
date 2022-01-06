@@ -72,7 +72,7 @@
 										<fieldset>
 											<button type="submit" id="form-submit" class="button">Login</button>
 										</fieldset>
-										<a class="small fw-500 text-decoration-none" href="/PassworDimenticata">Hai dimenticato la password?</a>
+										
 									</div>
 								</div>
 							</form>

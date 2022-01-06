@@ -44,7 +44,7 @@ public class RegistrazioneServlet extends HttpServlet {
 		tel = request.getParameter("tel");
 		password = request.getParameter("password");
 		
-		Utente user = new Utente( 0, nome,cognome, email, tel, password, "user");
+		Utente user = new Utente( 0, nome,cognome, email, tel, password, "user", null);
 		
 		UtenteDaoImp newUser = new UtenteDaoImp();
 		String result = newUser.insert(user);

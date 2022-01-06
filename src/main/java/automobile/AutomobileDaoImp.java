@@ -18,7 +18,7 @@ public class AutomobileDaoImp implements AutomobileDao{
 	{
 			String result = "Success";
 			Connection con = DaoFactory.getDatabase().openConnection();
-			String INSERT_CAR = "INSERT INTO carshare.automobile (targa, modello ,imgUrl, id_park) VALUES (?,?,?,?)";
+			String INSERT_CAR = "INSERT INTO carshare.automobile (targa, modello ,imgUrl, id_park, stato) VALUES (?,?,?,?,'Libera')";
 			
 			try {
 					PreparedStatement ps = con.prepareStatement(INSERT_CAR);
@@ -90,7 +90,7 @@ public class AutomobileDaoImp implements AutomobileDao{
 		List<Automobile> cars = new ArrayList<>();
 		
 		Connection con = DaoFactory.getDatabase().openConnection();
-		String SELECT_ALL_CARS = "SELECT automobile.targa,automobile.modello,automobile.imgUrl,automobile.id_park,parcheggio.luogo  FROM carshare.automobile \r\n"
+		String SELECT_ALL_CARS = "SELECT automobile.targa,automobile.modello,automobile.imgUrl,automobile.id_park,parcheggio.luogo,automobile.stato  FROM carshare.automobile \r\n"
 				+ "INNER JOIN parcheggio ON automobile.id_park = parcheggio.id_parcheggio";
 	
 		try {
@@ -104,8 +104,9 @@ public class AutomobileDaoImp implements AutomobileDao{
 				String imgUrl = rs.getString("imgUrl");
 				int park_id = rs.getInt("id_park");
 				String luogo = rs.getString("luogo");
+				String stato = rs.getString("stato");
 				
-				cars.add(new Automobile(targa, modello, imgUrl, park_id, luogo));
+				cars.add(new Automobile(targa, modello, imgUrl, park_id, luogo, stato));
 			}
 			
 			con.close();
@@ -119,6 +120,32 @@ public class AutomobileDaoImp implements AutomobileDao{
 	}
 
 
+	public String trovaAuto(int id_parcheggio) {
+		
+		
+		Connection con = DaoFactory.getDatabase().openConnection();
+		String SELECT_READY_CARS = "SELECT targa FROM carshare.automobile WHERE stato = 'Libera' AND id_park = ?";
+		String targaAuto = "no_cars";
 	
+		try {
+			PreparedStatement ps = con.prepareStatement(SELECT_READY_CARS);
+			ps.setInt(1, id_parcheggio);
+			ResultSet rs = ps.executeQuery();
+			
+			while ( rs.next() ) {
+				
+				String targa = rs.getString("targa");
+				targaAuto = targa;
+			}
+			
+			con.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+		return targaAuto;
+	}
+	
 }

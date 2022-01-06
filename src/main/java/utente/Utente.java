@@ -1,6 +1,6 @@
 package utente;
 
-
+import java.sql.Date;
 
 public class Utente {
 	
@@ -8,7 +8,7 @@ public class Utente {
 		super();
 	}
 	
-	public Utente(int id, String nome, String cognome, String email,String tel, String password, String role) {
+	public Utente(int id, String nome, String cognome, String email,String tel, String password, String role, Date data_pagamento) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -17,6 +17,7 @@ public class Utente {
 		this.tel = tel;
 		this.password = password;
 		this.role = role;
+		this.data_pagamento = data_pagamento;
 	}
 
 	public String getNome() {
@@ -75,6 +76,20 @@ public class Utente {
 		this.tel = tel;
 	}
 
+	/**
+	 * @return the data_pagamento
+	 */
+	public Date getData_pagamento() {
+		return data_pagamento;
+	}
+
+	/**
+	 * @param data_pagamento the data_pagamento to set
+	 */
+	public void setData_pagamento(Date data_pagamento) {
+		this.data_pagamento = data_pagamento;
+	}
+
 	private String nome;
 	private String cognome;
 	private String email;
@@ -82,5 +97,7 @@ public class Utente {
 	private int id;
 	private String role;
 	private String tel;
+	private Date data_pagamento;
+	
 		
 }

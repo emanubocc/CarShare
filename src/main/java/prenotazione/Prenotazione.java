@@ -6,7 +6,7 @@ public class Prenotazione {
 
 
 	public Prenotazione(int id_prenotazione, Date data_inizio, Date data_consegna, float percorrenza_effettiva,
-			int id_utente, int id_parcheggio, String luogo, float tariffa, String stato, String pagato, String autoConsegnata) {
+			int id_utente, int id_parcheggio, String luogo, float tariffa, String stato, String pagato, String autoConsegnata, String targa) {
 		super();
 		this.id_prenotazione = id_prenotazione;
 		this.data_inizio = data_inizio;
@@ -19,6 +19,7 @@ public class Prenotazione {
 		this.stato = stato;
 		this.pagato = pagato;
 		this.autoConsegnata = autoConsegnata;
+		this.setTarga(targa);
 	}
 	
 	private int id_prenotazione;
@@ -32,6 +33,7 @@ public class Prenotazione {
 	private String stato;
 	private String pagato;
 	private String autoConsegnata;
+	private String targa;
 
 
 	
@@ -119,6 +121,18 @@ public class Prenotazione {
 	 */
 	public void setAutoConsegnata(String autoConsegnata) {
 		this.autoConsegnata = autoConsegnata;
+	}
+	/**
+	 * @return the targa
+	 */
+	public String getTarga() {
+		return targa;
+	}
+	/**
+	 * @param targa the targa to set
+	 */
+	public void setTarga(String targa) {
+		this.targa = targa;
 	}
 	
 }

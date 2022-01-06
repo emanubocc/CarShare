@@ -1,6 +1,7 @@
 package utente;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +18,7 @@ public class UtenteDaoImp implements UtenteDao{
 	{
 		String result = "Success";
 		Connection con = DaoFactory.getDatabase().openConnection();
-		String INSERT_USER = "INSERT INTO carshare.utente (nome,cognome,email,tel,password,role) VALUES (?,?,?,?,?,?)";
+		String INSERT_USER = "INSERT INTO carshare.utente (nome,cognome,email,tel,password,role,data_pagamento_quota) VALUES (?,?,?,?,?,?,'')";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(INSERT_USER);
@@ -79,7 +80,8 @@ public class UtenteDaoImp implements UtenteDao{
 				String cognome = rs.getString("cognome");
 				String email = rs.getString("email");
 				String tel = rs.getString("tel");
-				users.add(new Utente(id, nome, cognome, email, tel, null, "user"));
+				Date data_pagamento = rs.getDate("data_pagamento_quota");
+				users.add(new Utente(id, nome, cognome, email, tel, null, "user", data_pagamento));
 			}
 			
 			con.close();
@@ -113,9 +115,9 @@ public class UtenteDaoImp implements UtenteDao{
 				String cognome = rs.getString("cognome");
 				String tel = rs.getString("tel");
 				String role = rs.getString("role");
-				
+				Date data_pagamento = rs.getDate("data_pagamento_quota");
 			
-				Utente user = new Utente( id, nome, cognome, email , tel, null, role);
+				Utente user = new Utente( id, nome, cognome, email , tel, null, role, data_pagamento);
 				con.close();
 				return user;
 			}

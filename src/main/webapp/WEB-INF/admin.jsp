@@ -61,6 +61,7 @@
 													Targa: <span class="badge-soft-primary">${car.targa}</span>
 												</p>
 												<p class="small text-muted">Situata: ${car.luogo}</p>
+												<p class="small text-muted">Stato: ${car.stato}</p>
 											</div>
 										</div>
 										<div class="col-md-2 text-right">

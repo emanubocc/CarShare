@@ -13,6 +13,7 @@ import prenotazione.PrenotazioneDaoImp;
 import utente.Utente;
 import utente.UtenteDaoImp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import automobile.Automobile;
@@ -53,6 +54,20 @@ public class AdminServlet extends HttpServlet {
 
 	private void codaPrenotazioni(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+			
+		PrenotazioneDaoImp resDao = new PrenotazioneDaoImp();
+		ParcheggioDaoImp ParkDao = new ParcheggioDaoImp();
+		
+		List<Parcheggio> ParkList =  ParkDao.selectAllParks();
+		List<List<Prenotazione>> parkResList = new ArrayList<List<Prenotazione>>();
+		
+		for ( Parcheggio MyList : ParkList )
+		{
+			parkResList.add( resDao.selectParkReservation(MyList.getId_parcheggio()) );
+		}
+		
+		request.setAttribute("parkResList", parkResList);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/coda-prenotazione.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -169,8 +184,8 @@ public class AdminServlet extends HttpServlet {
 			String modello = request.getParameter("modello");
 			String imgUrl = request.getParameter("imgUrl");
 			int park = Integer.parseInt(request.getParameter("park"));
-
-			Automobile car = new Automobile(targa, modello, imgUrl, park, null);
+			
+			Automobile car = new Automobile(targa, modello, imgUrl, park, null, "Libera");
 			AutomobileDaoImp newCar = new AutomobileDaoImp();
 			String result = newCar.insert(car);
 			request.setAttribute("result", result);
@@ -201,6 +216,13 @@ public class AdminServlet extends HttpServlet {
 			PrenotazioneDaoImp resDao = new PrenotazioneDaoImp();
 			resDao.changeStato(idPrenotazione, "Erogato");
 			showUserList(request, response);
+		}
+		 else if ("confermaCoda".equals(selectForm)) {
+	
+			int idPrenotazione = Integer.parseInt(request.getParameter("id_prenotazione"));
+			PrenotazioneDaoImp resDao = new PrenotazioneDaoImp();
+			resDao.changeStato(idPrenotazione, "Erogato");
+			codaPrenotazioni(request, response);
 		}
 
 	}
