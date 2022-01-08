@@ -47,7 +47,6 @@ public class PrenotazioneDaoImp implements PrenotazioneDao {
 			ps.executeUpdate();
 			con.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			result = e.getMessage();
 		}
@@ -136,7 +135,6 @@ public class PrenotazioneDaoImp implements PrenotazioneDao {
 			con.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -202,7 +200,6 @@ public class PrenotazioneDaoImp implements PrenotazioneDao {
 			con.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -242,7 +239,6 @@ public class PrenotazioneDaoImp implements PrenotazioneDao {
 			con.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -259,7 +255,6 @@ public class PrenotazioneDaoImp implements PrenotazioneDao {
 			con.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -276,7 +271,6 @@ public class PrenotazioneDaoImp implements PrenotazioneDao {
 			con.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

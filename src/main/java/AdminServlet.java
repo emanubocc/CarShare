@@ -24,7 +24,6 @@ public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public AdminServlet() {
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

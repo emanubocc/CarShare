@@ -22,7 +22,6 @@ public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public UserServlet() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/*---- DO GET ----*/
@@ -33,10 +32,20 @@ public class UserServlet extends HttpServlet {
 
 		if ("prenota".equals(action)) {
 			showFormReservation(request, response);
-		} else {
+		} 
+		else if ("pagaQuota".equals(action)){
+			showPaymentMethods(request, response);
+		}
+		else {
 			showProfile(request, response);
 		}
 
+	}
+
+	private void showPaymentMethods(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.getRequestDispatcher("WEB-INF/payment.jsp").forward(request, response);
+		
 	}
 
 	/*---- DO POST ----*/
@@ -96,15 +105,28 @@ public class UserServlet extends HttpServlet {
 		List<Prenotazione> resList = resDao.selectAllReservation(user.getId());
 		request.setAttribute("resList", resList);
 		
-		System.out.println( checkPagamentoQuotaAnnuale(user.getData_pagamento()));
-
+		String DaPagare;
+		DaPagare = checkPagamentoQuotaAnnuale(user.getData_pagamento());
+		request.setAttribute("DaPagare", DaPagare);
+		
 		request.getRequestDispatcher("WEB-INF/profile.jsp").forward(request, response);
 
 	}
 
 	private void showFormReservation(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 
+		HttpSession session = request.getSession(false);
+		Utente user = (Utente) session.getAttribute("user");
+		
+		if( checkPagamentoQuotaAnnuale(user.getData_pagamento()).equals("Da_pagare"))
+		{
+			String result = "È necessario pagare la quota annuale per effetturare una prenotazione";
+			request.setAttribute("result", result);
+			showProfile(request, response);
+		}
+		
 		ParcheggioDaoImp ParkDao = new ParcheggioDaoImp();
 		List<Parcheggio> ParkList = ParkDao.selectAllParks();
 		request.setAttribute("ParkList", ParkList);
@@ -113,17 +135,16 @@ public class UserServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	public Date checkPagamentoQuotaAnnuale(Date lastPayment) {
+	public String checkPagamentoQuotaAnnuale(Date lastPayment) {
 		Date currentDate = new Date(Calendar.getInstance().getTime().getTime());
 		
 		float diffTime = currentDate.getTime() - lastPayment.getTime();
 		int diffDays = (int) (diffTime / (1000 * 60 * 60 * 24));
 		
 		if(diffDays > 365 )
-			System.out.println("Devi pagare");
+			return "Da_pagare";
 		else
-			System.out.println("NON Devi pagare");
-		return currentDate;
+			return "Pagato";
 	}
 
 	private Date toSqlDate(String dataString) {

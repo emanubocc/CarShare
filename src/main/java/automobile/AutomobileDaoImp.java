@@ -9,7 +9,6 @@ import java.util.List;
 import daofactory.DaoFactory;
 
 import java.util.ArrayList;
-//import java.util.List;
 
 public class AutomobileDaoImp implements AutomobileDao{
 
@@ -30,7 +29,6 @@ public class AutomobileDaoImp implements AutomobileDao{
 					ps.executeUpdate();
 					con.close();
 				} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				result = e.getMessage();
 				}
@@ -51,7 +49,6 @@ public class AutomobileDaoImp implements AutomobileDao{
 			ps.setString(1, targa);
 			ps.executeUpdate();		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			result = e.getMessage();
 			return result;
@@ -74,7 +71,6 @@ public class AutomobileDaoImp implements AutomobileDao{
 			ps.setString(2, targa);
 			ps.executeUpdate();		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			result = e.getMessage();
 			return result;
@@ -112,7 +108,6 @@ public class AutomobileDaoImp implements AutomobileDao{
 			con.close();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -141,7 +136,6 @@ public class AutomobileDaoImp implements AutomobileDao{
 			con.close();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

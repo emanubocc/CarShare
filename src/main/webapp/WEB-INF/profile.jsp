@@ -65,6 +65,12 @@
 										<hr>
 										<b>Data ultimo pagamento quota annuale:</b>
 										${user.data_pagamento}
+										<c:if test="${DaPagare == 'Da_pagare'}">
+										<p>Quota scaduta, effettua ora un pagamento.
+										<a href="<%=request.getContextPath()%>/UserProfile?action=pagaQuota" class="btn btn-primary btn-small">Paga quota</a>
+										</p>
+										</c:if>
+										
 
 									</div>
 								</div>

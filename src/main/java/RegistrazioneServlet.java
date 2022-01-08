@@ -10,31 +10,17 @@ import jakarta.servlet.http.HttpServletResponse;
 import utente.Utente;
 import utente.UtenteDaoImp;
 
-/**
- * Servlet implementation class Registrazione
- */
 @WebServlet("/Registrazione")
 public class RegistrazioneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
     public RegistrazioneServlet() {
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("WEB-INF/registrazione.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String nome, cognome, email, password, tel  = "";
