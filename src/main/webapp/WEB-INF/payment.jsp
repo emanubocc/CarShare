@@ -70,12 +70,12 @@
                       <div class="price">
                         <span>${quota}&euro;</span>
                       </div>
-                      <a href="<%=request.getContextPath()%>/UserProfile?action=${pagamento}&metodo=contanti"><img src="<%=request.getContextPath()%>/resources/assets/images/contanti.png" alt=""></a>
+                      <a href="<%=request.getContextPath()%>/UserProfile?action=${pagamento}&metodo=contanti&id_prenotazione=${id_prenotazione}"><img src="<%=request.getContextPath()%>/resources/assets/images/contanti.png" alt=""></a>
                     </div>
                     <div class="down-content">
 
                       <h4>Effettua pagamento in contanti.</h4>
-                      <a href="<%=request.getContextPath()%>/UserProfile?action=${pagamento}&metodo=contanti" class="btn btn-primary" role="button" aria-pressed="true">Paga ora</a>
+                      <a href="<%=request.getContextPath()%>/UserProfile?action=${pagamento}&metodo=contanti&id_prenotazione=${id_prenotazione}" class="btn btn-primary" role="button" aria-pressed="true">Paga ora</a>
                     </div>
                   </div>
                 </div>
@@ -92,13 +92,18 @@
 									<form id="simple-form" action="UserProfile" method="post" style="padding:5px">
 
 										<div class="row">
-										<p> Effettua pagamento con bancomat o carta di credito. <br>&nbsp;</p>
+										<p> Effettua pagamento con bancomat o carta di credito il tuo importo di <b>${quota}&euro;</b>. <br>&nbsp;</p><hr>
 											<div class=" d-none">
 												<fieldset>
 													<input name="hidden" type="text" id="hidden"
 														value="bancomat">
 														<input name="quotaPagamento" type="text" id="quotaPagamento"
 														value="${quota}">
+														<input name="pagamento" type="text" id="pagamento"
+														value="${pagamento}">
+														<input name="id_reservation" type="text" id="id_reservation"
+														value="${id_prenotazione}">
+														
 												</fieldset>
 											</div>
 
@@ -130,7 +135,34 @@
 											<div class="col-lg-6">
 												<fieldset>
 													<button type="submit" id="form-submit"
-														class="button float-begin">PAGA</button>
+														class="button float-begin">PAGA ORA</button>
+												</fieldset>
+											</div>
+										</div>
+
+									</form>
+								</c:if>
+								<c:if test="${metodo == 'contanti'}">
+								<p>Paga in contanti il tuo importo di <b>${quota}&euro;</b> </p><hr>
+										<form id="simple-form" action="UserProfile" method="post" style="padding:5px">
+
+										<div class="row">
+											<div class=" d-none">
+												<fieldset>
+													<input name="hidden" type="text" id="hidden"
+														value="contanti">
+														<input name="quotaPagamento" type="text" id="quotaPagamento"
+														value="${quota}">
+														<input name="pagamento" type="text" id="pagamento"
+														value="${pagamento}">
+														<input name="id_reservation" type="text" id="id_reservation"
+														value="${id_prenotazione}">
+												</fieldset>
+											</div>
+											<div class="col-lg-6">
+												<fieldset>
+													<button type="submit" id="form-submit"
+														class="button float-begin">PAGA ORA</button>
 												</fieldset>
 											</div>
 										</div>

@@ -16,6 +16,7 @@ import parcheggio.Parcheggio;
 import parcheggio.ParcheggioDaoImp;
 import prenotazione.Prenotazione;
 import prenotazione.PrenotazioneDaoImp;
+import strategy.Contanti;
 import strategy.CreditCard;
 import utente.Utente;
 import utente.UtenteDaoImp;
@@ -129,6 +130,7 @@ public class UserServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession(false);
 			Utente user = (Utente) session.getAttribute("user");
+			String result = "";
 			
 			float quotaPagamento = Float.parseFloat(request.getParameter("quotaPagamento"));
 			
@@ -137,13 +139,44 @@ public class UserServlet extends HttpServlet {
 			int cvv = Integer.parseInt(request.getParameter("cvv"));
 			String scadenza = request.getParameter("scadenza");
 			
+			
+			
 			CreditCard payCard = new CreditCard(fullname, numeroCarta, cvv, scadenza);
-			String result = payCard.payQuota(quotaPagamento, user.getId());
+			String pagamento = request.getParameter("pagamento");
+			
+			if(pagamento.equals("pagaQuota"))
+				 result = payCard.payQuota(quotaPagamento, user.getId());
+			else
+			{
+			    int id_reservation = Integer.parseInt(request.getParameter("id_reservation"));
+				result = payCard.payPrenotazione(quotaPagamento, id_reservation);
+			}
 			request.setAttribute("result", result);
 			
 			showProfile(request, response);
+		}
+		else if ("contanti".equals(selectForm)) {
 			
+
+			HttpSession session = request.getSession(false);
+			Utente user = (Utente) session.getAttribute("user");
+			String result = "";
 			
+			String pagamento = request.getParameter("pagamento");
+			float quotaPagamento = Float.parseFloat(request.getParameter("quotaPagamento"));
+			
+			Contanti cash = new Contanti( quotaPagamento );
+			if( pagamento.equals("pagaQuota") )
+				 result = cash.payQuota(quotaPagamento, user.getId());
+			else
+			{
+			    int id_reservation = Integer.parseInt(request.getParameter("id_reservation"));
+				result = cash.payPrenotazione(quotaPagamento, id_reservation);
+			}
+			
+			request.setAttribute("result", result);
+			showProfile(request, response);
+		
 		}
 
 	}
@@ -165,8 +198,12 @@ public class UserServlet extends HttpServlet {
 		List<Prenotazione> resList = resDao.selectAllReservation(user.getId());
 		request.setAttribute("resList", resList);
 		
-		String DaPagare = checkPagamentoQuotaAnnuale(user.getData_pagamento());
-		request.setAttribute("DaPagare", DaPagare);
+		if(user.getData_pagamento() != null)
+		{	
+			String DaPagare = checkPagamentoQuotaAnnuale(user.getData_pagamento());
+			request.setAttribute("DaPagare", DaPagare);
+
+		}
 		
 		request.getRequestDispatcher("WEB-INF/profile.jsp").forward(request, response);
 

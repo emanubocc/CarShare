@@ -40,14 +40,14 @@
                   <div class="col-lg-12">
                     <fieldset>
                      <span class="p-2">Data inizio noleggio:</span>
-                      <input name="data_inizio" type="date" id="data_inizio" required>
+                      <input name="data_inizio" type="date" id="data_inizio" onblur="calcolaTotale()"required>
                     </fieldset>
                   </div>
                   <hr class="blank">
                   <div class="col-lg-12">
                     <fieldset>
                      <span class="p-2">Data consegna noleggio:</span>
-                       <input name="data_consegna" type="date" id="data_consegna" required>
+                       <input name="data_consegna" type="date" id="data_consegna" onblur="calcolaTotale()" required>
                     </fieldset>
                   </div>
                   <hr class="blank">

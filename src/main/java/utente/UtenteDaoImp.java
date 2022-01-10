@@ -18,7 +18,7 @@ public class UtenteDaoImp implements UtenteDao{
 	{
 		String result = "Success";
 		Connection con = DaoFactory.getDatabase().openConnection();
-		String INSERT_USER = "INSERT INTO carshare.utente (nome,cognome,email,tel,password,role,data_pagamento_quota) VALUES (?,?,?,?,?,?,'')";
+		String INSERT_USER = "INSERT INTO carshare.utente (nome,cognome,email,tel,password,role,data_pagamento_quota) VALUES (?,?,?,?,?,?,?)";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(INSERT_USER);
@@ -28,6 +28,7 @@ public class UtenteDaoImp implements UtenteDao{
 			ps.setString(4, user.getTel());
 			ps.setString(5, user.getPassword());
 			ps.setString(6, user.getRole());
+			ps.setDate(7, user.getData_pagamento());
 			ps.executeUpdate();
 			con.close();
 			
