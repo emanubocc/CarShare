@@ -54,12 +54,12 @@
                       <div class="price">
                         <span>${quota}&euro;</span>
                       </div>
-                      <a href="<%=request.getContextPath()%>/UserProfile?action=pagaQuota&metodo=bancomat"><img src="<%=request.getContextPath()%>/resources/assets/images/bancomat.png" alt=""></a>
+                      <a href="<%=request.getContextPath()%>/UserProfile?action=${pagamento}&metodo=bancomat&id_prenotazione=${id_prenotazione}"><img src="<%=request.getContextPath()%>/resources/assets/images/bancomat.png" alt=""></a>
                     </div>
                     <div class="down-content">
 
                       <h4>Paga con bancomat o carta di credito.</h4>
-                      <a href="<%=request.getContextPath()%>/UserProfile?action=pagaQuota&metodo=bancomat" class="btn btn-primary" role="button" aria-pressed="true">Paga ora</a>
+                      <a href="<%=request.getContextPath()%>/UserProfile?action=${pagamento}&metodo=bancomat&id_prenotazione=${id_prenotazione}" class="btn btn-primary" role="button" aria-pressed="true">Paga ora</a>
                     </div>
                   </div>
                 </div>
@@ -70,12 +70,12 @@
                       <div class="price">
                         <span>${quota}&euro;</span>
                       </div>
-                      <a href="<%=request.getContextPath()%>/UserProfile?action=pagaQuota&metodo=contanti"><img src="<%=request.getContextPath()%>/resources/assets/images/contanti.png" alt=""></a>
+                      <a href="<%=request.getContextPath()%>/UserProfile?action=${pagamento}&metodo=contanti"><img src="<%=request.getContextPath()%>/resources/assets/images/contanti.png" alt=""></a>
                     </div>
                     <div class="down-content">
 
                       <h4>Effettua pagamento in contanti.</h4>
-                      <a href="<%=request.getContextPath()%>/UserProfile?action=pagaQuota&metodo=contanti" class="btn btn-primary" role="button" aria-pressed="true">Paga ora</a>
+                      <a href="<%=request.getContextPath()%>/UserProfile?action=${pagamento}&metodo=contanti" class="btn btn-primary" role="button" aria-pressed="true">Paga ora</a>
                     </div>
                   </div>
                 </div>

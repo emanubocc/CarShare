@@ -144,24 +144,12 @@
 												<td><c:if
 														test="${res.stato == 'Erogato' || res.stato == 'Da pagare' }">
 														<c:if test="${res.pagato == 'NO'}">
-															<form action="UserProfile" method="post">
-																<div class=" d-none">
-																	<fieldset>
-																		<input name="hidden" type="text" id="hidden"
-																			value="paid">
-																	</fieldset>
-																</div>
-																<div class=" d-none">
-																	<fieldset>
-																		<input type="text" name="id_prenotazione"
-																			id="id_prenotazione" value="${res.id_prenotazione}">
-																	</fieldset>
-																</div>
-																<fieldset>
-																	<button type="submit" id="form-submit"
-																		class="btn btn-primary btn-small">Paga</button>
-																</fieldset>
-															</form>
+												
+
+													<a href="<%=request.getContextPath()%>/UserProfile?action=pagaPrenotazione&id_prenotazione=${res.id_prenotazione}" id="form-submit"
+														class="btn btn-primary btn-small">Paga</a>
+								
+															
 														</c:if>
 													</c:if></td>
 

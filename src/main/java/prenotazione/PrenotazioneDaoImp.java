@@ -140,6 +140,51 @@ public class PrenotazioneDaoImp implements PrenotazioneDao {
 
 		return resList;
 	}
+	
+	
+	public Prenotazione selectReservation(int id_prenotazione) {
+
+		ParcheggioDaoImp ParkDao = new ParcheggioDaoImp();
+
+		Prenotazione reservation = null;
+
+		Connection con = DaoFactory.getDatabase().openConnection();
+		String SELECT_RESERVATION = "SELECT * FROM carshare.prenotazioni WHERE id_prenotazione = ?";
+
+		try {
+
+			PreparedStatement ps = con.prepareStatement(SELECT_RESERVATION);
+			ps.setInt(1, id_prenotazione);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+			
+				Date data_inizio = rs.getDate("data_inizio");
+				Date data_consegna = rs.getDate("data_consegna");
+				float percorrenza_effettiva = rs.getFloat("percorrenza_effettiva");
+				int id_utente = rs.getInt("id_utente");
+				int id_parcheggio = rs.getInt("id_parcheggio");
+				String luogo = ParkDao.getLuogo(id_parcheggio);
+				String stato = rs.getString("stato");
+				float tariffa = rs.getFloat("tariffa");
+				String pagato = rs.getString("pagato");
+				String autoConsegnata = rs.getString("auto_consegnata");
+				String targa = rs.getString("targa");
+
+				reservation = new Prenotazione(id_prenotazione, data_inizio, data_consegna, percorrenza_effettiva,
+						id_utente, id_parcheggio, luogo, tariffa, stato, pagato, autoConsegnata, targa);
+			}
+
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return reservation;
+	}
+
 
 	@Override
 	public float calculatePrice(float percorrenza_effettiva, Date data_inizio, Date data_consegna) {

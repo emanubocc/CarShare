@@ -38,16 +38,24 @@ public class UserServlet extends HttpServlet {
 		else if ("pagaQuota".equals(action)){
 			showPaymentMethods(request, response);
 		}
+		else if ("pagaPrenotazione".equals(action)){
+			showPaymentMethodsPrenotazione(request, response);
+		}
 		else {
 			showProfile(request, response);
 		}
 
 	}
 
-	private void showPaymentMethods(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void showPaymentMethodsPrenotazione(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		float quota = 50;
-		request.setAttribute("quota", quota);
+		int id_prenotazione = Integer.parseInt(request.getParameter("id_prenotazione"));
+		request.setAttribute("id_prenotazione", id_prenotazione);
+		PrenotazioneDaoImp resDao = new PrenotazioneDaoImp();
+		Prenotazione reservation = resDao.selectReservation(id_prenotazione);
+
+		request.setAttribute("quota", reservation.getTariffa());
+		request.setAttribute("pagamento", "pagaPrenotazione");
 		
 		if (request.getParameter("metodo") != null) 
 		{
@@ -55,6 +63,21 @@ public class UserServlet extends HttpServlet {
 			request.setAttribute("metodo", metodo);
 		}
 		
+		request.getRequestDispatcher("WEB-INF/payment.jsp").forward(request, response);
+		
+	}
+
+	private void showPaymentMethods(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		float quota = 50;
+		request.setAttribute("quota", quota);
+		request.setAttribute("pagamento", "pagaQuota");
+		
+		if (request.getParameter("metodo") != null) 
+		{
+			String metodo = request.getParameter("metodo");
+			request.setAttribute("metodo", metodo);
+		}
 		
 		request.getRequestDispatcher("WEB-INF/payment.jsp").forward(request, response);
 		
