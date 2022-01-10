@@ -67,7 +67,7 @@ public class UtenteDaoImp implements UtenteDao{
 		List<Utente> users = new ArrayList<>();
 		
 		Connection con = DaoFactory.getDatabase().openConnection();
-		String SELECT_ALL_USERS = "SELECT id_utente,nome,cognome,email,tel FROM carshare.utente WHERE utente.role = 'user'";
+		String SELECT_ALL_USERS = "SELECT id_utente,nome,cognome,email,tel,data_pagamento_quota FROM carshare.utente WHERE utente.role = 'user'";
 	
 		try {
 			PreparedStatement ps = con.prepareStatement(SELECT_ALL_USERS);
@@ -128,6 +128,30 @@ public class UtenteDaoImp implements UtenteDao{
 		
 		return null;
 	}
+	
+	public Date updateDate(int idUtente) {
 
+		Connection con = DaoFactory.getDatabase().openConnection();
+		String SHOW_DATE = "SELECT data_pagamento_quota FROM carshare.utente WHERE id_utente=?";
+		
+
+		try {
+			PreparedStatement ps = con.prepareStatement(SHOW_DATE);
+			ps.setInt(1, idUtente);
+
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+
+			Date data_pagamento = rs.getDate("data_pagamento_quota");
+
+			con.close();
+			return data_pagamento;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 
 }

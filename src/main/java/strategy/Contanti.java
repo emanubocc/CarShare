@@ -9,19 +9,35 @@ public class Contanti implements Strategy {
         this.setImporto(importo);
     }
 
-    @Override
-    public String pay(double prezzo) {
+ 
+	@Override
+    public String payQuota(double prezzo, int idUtente) {
     	  String result  = prezzo + " pagato in contanti.";
           return  result;
     }
 
-	
+
+	@Override
+	public String payPrenotazione(double prezzo, int idPrenotazione) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	/**
+	 * @return the importo
+	 */
 	public double getImporto() {
 		return importo;
 	}
 
-	
+
+	/**
+	 * @param importo the importo to set
+	 */
 	public void setImporto(double importo) {
 		this.importo = importo;
 	}
+
+	
 }

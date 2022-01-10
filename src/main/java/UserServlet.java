@@ -16,7 +16,9 @@ import parcheggio.Parcheggio;
 import parcheggio.ParcheggioDaoImp;
 import prenotazione.Prenotazione;
 import prenotazione.PrenotazioneDaoImp;
+import strategy.CreditCard;
 import utente.Utente;
+import utente.UtenteDaoImp;
 
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -43,6 +45,16 @@ public class UserServlet extends HttpServlet {
 	}
 
 	private void showPaymentMethods(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		float quota = 50;
+		request.setAttribute("quota", quota);
+		
+		if (request.getParameter("metodo") != null) 
+		{
+			String metodo = request.getParameter("metodo");
+			request.setAttribute("metodo", metodo);
+		}
+		
 		
 		request.getRequestDispatcher("WEB-INF/payment.jsp").forward(request, response);
 		
@@ -90,23 +102,47 @@ public class UserServlet extends HttpServlet {
 			resDao.changeConsegna(idPrenotazione);
 			showProfile(request, response);
 		}
+		else if ("bancomat".equals(selectForm)) {
+			
+			HttpSession session = request.getSession(false);
+			Utente user = (Utente) session.getAttribute("user");
+			
+			float quotaPagamento = Float.parseFloat(request.getParameter("quotaPagamento"));
+			
+			String fullname = request.getParameter("fullname");
+			long numeroCarta = Long.parseLong(request.getParameter("numeroCarta"));
+			int cvv = Integer.parseInt(request.getParameter("cvv"));
+			String scadenza = request.getParameter("scadenza");
+			
+			CreditCard payCard = new CreditCard(fullname, numeroCarta, cvv, scadenza);
+			String result = payCard.payQuota(quotaPagamento, user.getId());
+			request.setAttribute("result", result);
+			
+			showProfile(request, response);
+			
+			
+		}
 
 	}
 
 	private void showProfile(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		
 		HttpSession session = request.getSession(false);
 		Utente user = (Utente) session.getAttribute("user");
+		
+		UtenteDaoImp UserDao = new UtenteDaoImp();
+		user.setData_pagamento(UserDao.updateDate(user.getId()));
 
+		
 		PrenotazioneDaoImp resDao = new PrenotazioneDaoImp();
 		resDao.updateStatoPrenotazioni(user.getId());
 
 		List<Prenotazione> resList = resDao.selectAllReservation(user.getId());
 		request.setAttribute("resList", resList);
 		
-		String DaPagare;
-		DaPagare = checkPagamentoQuotaAnnuale(user.getData_pagamento());
+		String DaPagare = checkPagamentoQuotaAnnuale(user.getData_pagamento());
 		request.setAttribute("DaPagare", DaPagare);
 		
 		request.getRequestDispatcher("WEB-INF/profile.jsp").forward(request, response);
